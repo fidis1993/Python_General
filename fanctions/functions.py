@@ -1,13 +1,23 @@
 import pandas as pd
 
 def startmenu ():
+    """
+    A Menu that connects all the possible actions on a dataset.
+
+    Returns:
+        Nothing by itself.
+    """
 
     while(1):
 
         print("""
         1) Read .csv
-        2) Show Details of Dataframe
+        2) Show Details of Dataframe's dimensions
         3)
+        4)
+        5)
+        6) Save to .csv
+        *) Quit
         """)
         option = int(input("User option: "))
         if option == 1:
@@ -19,6 +29,15 @@ def startmenu ():
                 print(f"Error Type is: {e}")
         elif option == 3:
             pass
+        elif option == 4:
+            pass
+        elif option == 5:
+            pass
+        elif option == 6:
+            try:
+                savemenu(df)
+            except NameError as e:
+                print(f"Error Type is: {e}")
         else:
             break
 
@@ -67,10 +86,72 @@ def showinfo (df):
             break
 
 def findrow (somekey):
+    """
+    
+    """
     pass
 
 def findcol (somekey):
+    """
+    
+    """
     pass
+
+def getname():
+    """
+    Reads a name from the user.
+
+    Returns:
+        name: string name
+    """
+    name = str(input("Give the desired name of the final file: "))
+    return name
+
+def savemenu(df):
+    """
+    A function that decides in which format to save the final image of the df.
+
+    Args:
+        df : The final dataframe.
+    
+    Returns:
+        Nothing.
+    """
+
+    while(1):
+        print(""" WHICH FORMAT:
+              1) CSV
+              2) XLSX
+              3)
+              4)
+              5)
+              *) Quit
+        
+        """)
+        option = int(input())
+        if option == 1:
+            name = getname()
+            exp_csv(df,name)
+        elif option == 2:
+            name = getname()
+            exp_xlsx(df,name)
+        elif option == 3:
+            pass
+        elif option == 4:
+            pass
+        elif option == 5:
+            pass
+        else:
+            break
+
+        
+def epilog():
+    """
+    A functions that signals the end of the execution.
+    """
+
+    print(" The End. Thanks for playing!")
+            
 
 #You can add this as a method to a class. Making it more intuitive.
 def exp_csv (df,name):
@@ -87,6 +168,7 @@ def exp_csv (df,name):
     
     df.to_csv(f"{name}.csv", index=False, encoding= 'utf8')
 
+#You can add this as a method to a class. Making it more intuitive.
 def exp_xlsx (df,name):
     """
     The functions takes a Dataframe and the desired name, saves it as .xlsx

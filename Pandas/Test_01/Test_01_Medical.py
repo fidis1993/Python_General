@@ -41,7 +41,7 @@ print(" ROW OPERATIONS ")
 print(df.iloc[0:10].head(5))
 
 # 2) df.loc[22, :] labeled based row selection only if you have an index
-print(df.loc[-2,0:20])
+#print(df.loc[2,0:20])
 
 # 3) logical-based row selection with statements. df[df["WHQ500"] >= 2.0]
 print (df[df["WHQ500"] >= 2.0])
@@ -76,6 +76,15 @@ df2 = df2.iloc[5:,] #Means the same but don't take the first 5 rows
 name = "proccessed"
 df.to_csv(f"{name}.csv", index=False, encoding= 'utf8')
 
+import matplotlib.pyplot as plt  # noqa: E402
+
+#%matplotlib inline
+
+# Let's create a some simple graphs.
+
+df["WHQ500"].plot(kind= 'hist', bins= 70)
+plt.xlabel("Values WHQ500")
+plt.show()
 
 
-
+print(" The End. Thanks for playing!")
