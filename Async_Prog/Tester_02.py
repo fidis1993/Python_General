@@ -30,16 +30,16 @@ def tasks(name, work_que):
     """
     A simple function that hundles tasks, if they exist.
     """
-    if work_que.empty():
-        print (f"Tasks are empty: {name} ")
-    else:
-        while not work_que.empty():
-            count =  work_que.get()
-            Sum = 0
-            print(f"Current Task {name} ")
-            for x in range(count):
-                Sum+=1
-            print(f"Task's {name} total:{Sum}")
+
+    while not work_que.empty():
+        count =  work_que.get()
+        Sum = 0
+        print(f"Current Task {name} ")
+        for x in range(count):
+            Sum+=1
+            yield
+        print(f"Task's {name} total:{Sum}")
+
 def main():
 
     # Create the supposed queue of work
@@ -53,12 +53,18 @@ def main():
     s1,s2,s3,s4,s5 = start_timer()
 
     # Let's create some synchronous tasks.
-    some_tasks = [(tasks, "One", work_que), (tasks, "Two", work_que)]
+    some_tasks = [ tasks( "One", work_que), tasks("Two", work_que)]
     
     # Run the tasks
-    for f, n, q in some_tasks:
-        f(n, q)
-
+    flag = False
+    while not flag:
+         for f in some_tasks:
+            try:
+                next(f)
+            except StopIteration:
+                some_tasks.remove(f)
+            if len(some_tasks) == 0:
+                flag =  True
     # Close timers and print the execution time
     e1,e2,e3,e4,e5 =  end_timer()
 
