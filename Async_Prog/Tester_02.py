@@ -1,4 +1,4 @@
-#A synchronous queue example
+# An asynchronous queue example
 
 import queue 
 from time import time
@@ -24,7 +24,6 @@ def end_timer():
     e4 = process_time()
     e5 = thread_time()
     return e1,e2,e3,e4,e5
-
 
 def tasks(name, work_que):
     """
