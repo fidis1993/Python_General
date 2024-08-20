@@ -39,11 +39,13 @@ class MultiTimer:
         print(f'thread_time: {d5:.2f}')
  
 async def sleep(timer):
-    # A function that 
+    # A function that prints current time, sleeps 1sec
+
     print (f'Time: {timer.time_calculate()}')
     await asyncio.sleep(1)
 
 async def Sum (name, calculations, timer):
+    #prints task name and current calculations asynchronous.
     total = 0
     for calc in calculations:
         print (f" Task {name}: executing {total} + {calc} ")
@@ -56,9 +58,8 @@ def main():
 
     loop =  asyncio.get_event_loop()
     tasks = [
-    loop.create_task(Sum("Code 1", [13, 22,44],timer)),
-    loop.create_task(Sum("Code 2", [3, 7, 3],timer )),
-]
+            loop.create_task(Sum("Code 1", [13, 22,44],timer)),
+            loop.create_task(Sum("Code 2", [3, 7, 3],timer )),]
     loop.run_until_complete(asyncio.wait(tasks))
     loop.close()    
 

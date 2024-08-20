@@ -1,4 +1,4 @@
-# Example with ThreadPoolExecutor
+# Example with ThreadPoolExecutor, I/O bound workloads.
 
 from concurrent.futures import ThreadPoolExecutor
 from functions_classes import MultiTimer
